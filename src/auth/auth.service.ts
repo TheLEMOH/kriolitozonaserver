@@ -8,8 +8,6 @@ import { User } from 'src/user/user.model';
 
 const bcrypt = require('bcrypt');
 
-const secret = 'qwerty';
-
 @Injectable()
 export class AuthService {
   constructor(
@@ -24,10 +22,12 @@ export class AuthService {
   }
 
   async refresh(data: RefreshDto) {
+    const secret = process.env.JWT_SECRET;
+
     if (!data.token) throw new HttpException('Ключ не найден', 401);
 
     const verify = await this.jwtService.verify(data.token, { secret });
-    
+
     if (verify) {
       if (!verify.login) return null;
 
@@ -38,6 +38,7 @@ export class AuthService {
   }
 
   private async generateToken(user: User) {
+    const secret = process.env.JWT_SECRET;
     const payload = { id: user.id, name: user.name, login: user.login };
     const token = this.jwtService.sign(payload, { secret, expiresIn: '8h' });
     return token;

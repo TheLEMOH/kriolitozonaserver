@@ -2,14 +2,14 @@ import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 
 import { JwtService } from '@nestjs/jwt/dist';
 
-const secret = 'qwerty';
-
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor() {}
 
   async canActivate(context: ExecutionContext) {
     const jwtService = new JwtService();
+
+    const secret = process.env.JWT_SECRET;
 
     const [req] = context.getArgs();
     const { headers } = req;
@@ -20,7 +20,7 @@ export class RolesGuard implements CanActivate {
     }
 
     try {
-      const verify = await jwtService.verify(jwt, { secret });
+      const verify = await jwtService.verify(jwt, { secret: secret });
 
       if (verify.login) {
         return true;
@@ -28,7 +28,7 @@ export class RolesGuard implements CanActivate {
         throw false;
       }
     } catch (error) {
-      throw false;
+      throw error;
     }
   }
 }

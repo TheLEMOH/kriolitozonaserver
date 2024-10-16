@@ -9,9 +9,11 @@ import { AuthService } from './auth.service';
   providers: [AuthService],
   imports: [
     UsersModule,
-    JwtModule.register({
-      secret: 'qwerty',
-      signOptions: { expiresIn: '8h' },
+    JwtModule.registerAsync({
+      useFactory: () => ({
+        secret: process.env.JWT_SECRET,
+        signOptions: { expiresIn: '8h' },
+      }),
     }),
   ],
 })

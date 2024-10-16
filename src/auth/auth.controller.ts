@@ -1,8 +1,8 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { CreateUserDto } from 'src/user/dto/create-user.dto';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RefreshDto } from './dto/refresh.dto';
 import { EnterUserDto } from './dto/enterUser.dto';
+import { RolesGuard } from 'src/guard/guadr';
 
 @Controller('api/auth')
 export class AuthController {
@@ -14,6 +14,7 @@ export class AuthController {
   }
 
   @Post('/refresh')
+  @UseGuards(new RolesGuard())
   refresh(@Body() token: RefreshDto) {
     return this.authService.refresh(token);
   }

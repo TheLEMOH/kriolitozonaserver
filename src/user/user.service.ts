@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './user.model';
@@ -41,7 +41,22 @@ export class UsersService {
   }
 
   async deleteUserById(id: number) {
-    await this.userRepository.destroy({ where: { id } });
+    const users = await this.userRepository.count();
+
+    if (users >= 2) {
+      await this.userRepository.destroy({ where: { id } });
+    } else {
+      throw new HttpException(
+        {
+          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: 'Нельзя удалить единственного пользователя',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+        { cause: 'Нельзя удалить единственного пользователя' },
+      );
+    }
+
+    /*   */
     return true;
   }
 }
