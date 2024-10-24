@@ -44,6 +44,13 @@ import { User } from './user/user.model';
       rootPath: join(__dirname, '..', 'images'),
     }),
 
+    ServeStaticModule.forRoot({
+      serveRoot: '/',
+      renderPath:join(__dirname, '..', 'client'),
+      exclude: ['/api*'],
+/*       rootPath: join(__dirname, '..', 'client'), */
+    }),
+
     ExperimentModule,
     HorizonModule,
     DepthModule,

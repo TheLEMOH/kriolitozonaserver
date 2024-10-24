@@ -1,0 +1,1 @@
+import{an as t,o as e,h as o,d as r,c as _}from"./index-BXKJafw2.js";const a={};function s(c,n){return e(),o("div",null,'Страница "О проекте"')}const u=t(a,[["render",s]]),l=r({__name:"About",setup(c){return(n,f)=>(e(),_(u))}});export{l as default};

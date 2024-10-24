@@ -1,0 +1,1 @@
+import{an as t,o as e,h as o,d as a,c as r}from"./index-BXKJafw2.js";const s={};function _(c,n){return e(),o("div",null,'Страница "Контакты"')}const f=t(s,[["render",_]]),m=a({__name:"Contacts",setup(c){return(n,p)=>(e(),r(f))}});export{m as default};

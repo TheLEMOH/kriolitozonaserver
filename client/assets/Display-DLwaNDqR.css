@@ -1,0 +1,1 @@
+.form-body-display{display:flex;font-size:1rem;flex-direction:row;gap:1rem;max-width:350px;text-align:justify;align-items:start;justify-content:space-between}.form-body-display-label{text-wrap:nowrap}@media (max-width: 768px){.form-body-display{justify-content:space-between}}.chart{height:300px;width:100%}.group-space{display:flex;flex-direction:column;gap:.5rem}

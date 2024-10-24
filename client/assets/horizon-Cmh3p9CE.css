@@ -1,0 +1,1 @@
+.card-buttons{display:flex;justify-content:center;gap:1rem}.image-item{height:200px}.p-image{width:100%}@media (max-width: 768px){.image-item{object-fit:cover;width:100%}}.file{display:flex;align-items:center;gap:1rem}
