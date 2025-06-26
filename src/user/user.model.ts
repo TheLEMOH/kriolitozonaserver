@@ -10,7 +10,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 
 const bcrypt = require('bcrypt');
 
-@Table({ tableName: 'user' })
+@Table({ tableName: 'users' })
 export class User extends Model<User, CreateUserDto> {
   @Column({
     type: DataType.INTEGER,
@@ -40,7 +40,7 @@ export class User extends Model<User, CreateUserDto> {
     const exist = await this.findAll();
 
     if (exist.length == 0) {
-      await this.create({ name: 'admin', password: 'admin' });
+      await this.create({ name: 'admin', login: 'admin', password: 'admin' });
     }
   }
 }

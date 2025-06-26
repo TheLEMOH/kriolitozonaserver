@@ -47,8 +47,7 @@ import { User } from './user/user.model';
     ServeStaticModule.forRoot({
       serveRoot: '/',
       renderPath:join(__dirname, '..', 'client'),
-      exclude: ['/api*'],
-/*       rootPath: join(__dirname, '..', 'client'), */
+      exclude: ['/api/*'],
     }),
 
     ExperimentModule,
