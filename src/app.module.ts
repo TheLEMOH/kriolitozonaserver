@@ -10,6 +10,7 @@ import { DepthModule } from './depth/depth.module';
 import { MeasurementModule } from './measurement/measurement.module';
 import { UsersModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { MeasurementDetailsModule } from './measurementDetails/measurement.module';
 
 import { Experiment } from './experiment/experiment.model';
 import { Horizon } from './horizon/horizon.model';
@@ -18,6 +19,7 @@ import { Measurement } from './measurement/measurement.model';
 import { ImageModule } from './Images/image.module';
 import { FileModule } from './file/file.module';
 import { User } from './user/user.model';
+import { MeasurementDetails } from './measurementDetails/measurement.model';
 
 @Module({
   imports: [
@@ -35,7 +37,7 @@ import { User } from './user/user.model';
       password: 'admin',
       database: 'krio',
       autoLoadModels: true,
-      models: [Experiment, Horizon, Depth, Measurement, User],
+      models: [Experiment, Horizon, Depth, Measurement, User, MeasurementDetails],
       logging: false,
     }),
 
@@ -46,7 +48,7 @@ import { User } from './user/user.model';
 
     ServeStaticModule.forRoot({
       serveRoot: '/',
-      renderPath:join(__dirname, '..', 'client'),
+      renderPath: join(__dirname, '..', 'client'),
       exclude: ['/api/*'],
     }),
 
@@ -58,7 +60,8 @@ import { User } from './user/user.model';
     UsersModule,
     AuthModule,
     FileModule,
+    MeasurementDetailsModule
   ],
   controllers: [],
 })
-export class AppModule {}
+export class AppModule { }

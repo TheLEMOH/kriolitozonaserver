@@ -3,6 +3,7 @@ import { CreateExperimentDTO } from './dto/experiment.dto';
 import { Horizon } from 'src/horizon/horizon.model';
 import { Depth } from 'src/depth/depth.model';
 import { Measurement } from 'src/measurement/measurement.model';
+import { MeasurementDetails } from 'src/measurementDetails/measurement.model';
 
 @Table({ tableName: 'experiment' })
 export class Experiment extends Model<Experiment, CreateExperimentDTO> {
@@ -94,4 +95,7 @@ export class Experiment extends Model<Experiment, CreateExperimentDTO> {
 
   @HasMany(() => Measurement, { onDelete: 'CASCADE' })
   measurements: Depth[];
+
+  @HasMany(() => MeasurementDetails, { onDelete: 'CASCADE' })
+  measurementDetails: MeasurementDetails[];
 }
